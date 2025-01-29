@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/type.ts","./src/vite-env.d.ts","./src/components/authpopup.tsx","./src/components/integrationstep.tsx","./src/components/navbar.tsx","./src/components/organizationstep.tsx","./src/components/registrationstep.tsx","./src/components/stepindicator.tsx","./src/components/trainingstep.tsx"],"version":"5.6.3"}
