@@ -6,8 +6,8 @@ import cors from 'cors'
 const app = express();
 
 app.use(cors({
-    origin: 'https://beyondchat-bot-z5xj.vercel.app/',
-    credentials: true
+    origin:"*"
+    // credentials: true
 }))
 
 

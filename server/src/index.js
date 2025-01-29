@@ -7,7 +7,7 @@ import { app } from "./app.js"; // Ensure this file properly exports `app`
 
 dotenv.config(); // Ensure .env file is loaded
 
-const port = process.env.PORT || 5000;
+const port = 4000;
 
 app.use(cors());
 app.use(express.json());
