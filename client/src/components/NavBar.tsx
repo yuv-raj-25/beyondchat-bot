@@ -23,7 +23,8 @@ export function NavBar() {
             {/* Logo */}
             <div className="flex items-center gap-2">
               <Bot className="w-8 h-8 text-blue-500" />
-              <span className="text-xl font-bold">BeyondChats</span>
+              <a href="/home" className="text-xl font-bold">BeyondChats</a>
+              {/* <span className="text-xl font-bold">BeyondChats</span> */}
             </div>
 
             {/* Desktop Navigation */}

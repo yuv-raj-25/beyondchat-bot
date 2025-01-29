@@ -16,7 +16,7 @@ export function OrganizationStep({ formData, setFormData, onNext }: Props) {
   const fetchMetaDescription = useCallback(async (url: string) => {
     setLoading(true);
     try {
-      const response = await axios.get(`/api/fetchMeta?url=${encodeURIComponent(url)}`);
+      const response = await axios.get(`http://localhost:3000/api/fetchMeta?url=${encodeURIComponent(url)}`);
       const data = response.data;
       if (data.description) {
         setFormData({ ...formData, companyDescription: data.description });

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Toaster } from 'react-hot-toast';
 import { Bot } from 'lucide-react';
-import { NavBar } from './components/Navbar';
+import { NavBar } from './components/NavBar';
 import { StepIndicator } from './components/StepIndicator';
 import { OrganizationStep } from './components/OrganizationStep';
 import { TrainingStep } from './components/TrainingStep';
