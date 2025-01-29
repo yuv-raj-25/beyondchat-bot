@@ -4,8 +4,8 @@
   "description": "beyond chat assignments",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js",
-    "start": "node src/index.js"
+    "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
+    ""
   },
   "author": "yuvraj chaudhary",
   "license": "ISC",

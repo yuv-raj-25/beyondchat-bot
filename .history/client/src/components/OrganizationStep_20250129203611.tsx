@@ -9,7 +9,7 @@ import axios from 'axios';
  // Use localhost for development
 
 
- const apiUrl = "http://localhost:4000"
+ const 
 interface Props {
   formData: FormData;
   setFormData: (data: FormData) => void;

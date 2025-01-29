@@ -5,11 +5,8 @@ import { FormData } from '../type';
 import "tailwindcss";
 import axios from 'axios';
 
-// const apiUrl =  "https://beyondchat-bot.vercel.app"// Replace with your actual deployed backend URL
+const apiUrl =  "https://beyondchat-bot.vercel.app"// Replace with your actual deployed backend URL
  // Use localhost for development
-
-
- const apiUrl = "http://localhost:4000"
 interface Props {
   formData: FormData;
   setFormData: (data: FormData) => void;
