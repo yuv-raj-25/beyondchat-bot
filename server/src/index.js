@@ -12,10 +12,6 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-const API_BASE_URL = process.env.NODE_ENV === "production"
-  ? "https://your-backend.com"
-  : "http://localhost:3000";
-
 app.get('/api/fetchMeta', async (req, res) => {
     const { url } = req.query;
 

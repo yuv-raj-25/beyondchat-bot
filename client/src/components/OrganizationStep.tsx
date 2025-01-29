@@ -4,6 +4,8 @@ import { Building2, Globe, FileText, Loader2 } from 'lucide-react';
 import { FormData } from '../type';
 import "tailwindcss";
 import axios from 'axios';
+
+const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 interface Props {
   formData: FormData;
   setFormData: (data: FormData) => void;
@@ -16,7 +18,7 @@ export function OrganizationStep({ formData, setFormData, onNext }: Props) {
   const fetchMetaDescription = useCallback(async (url: string) => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:3000/api/fetchMeta?url=${encodeURIComponent(url)}`);
+      const response = await axios.get(`${apiUrl}/api/fetchMeta?url=${encodeURIComponent(url)}`);
       const data = response.data;
       if (data.description) {
         setFormData({ ...formData, companyDescription: data.description });
