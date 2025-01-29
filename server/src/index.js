@@ -9,8 +9,8 @@ dotenv.config(); // Ensure .env file is loaded
 
 const port = 4000;
 
-app.use(cors());
-app.use(express.json());
+// app.use(cors());
+// app.use(express.json());
 
 app.get('/api/fetchMeta', async (req, res) => {
     const { url } = req.query;
