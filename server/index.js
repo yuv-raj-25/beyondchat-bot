@@ -4,7 +4,7 @@ import {load} from 'cheerio';
 import cors from 'cors';
 
 const app = express();
-const PORT = 9000;
+const PORT = 2000;
 
 // Allow requests from your frontend domain
 app.use(
