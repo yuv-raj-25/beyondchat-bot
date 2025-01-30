@@ -9,7 +9,7 @@ import axios from 'axios';
  // Use localhost for development
 
 
- const apiUrl = "https://beyondchat-server.vercel.app/"
+ const apiUrl = "https://beyondchat-server.vercel.app"
 interface Props {
   formData: FormData;
   setFormData: (data: FormData) => void;
