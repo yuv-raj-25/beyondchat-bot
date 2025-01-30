@@ -6,7 +6,16 @@ import cors from 'cors';
 const app = express();
 const PORT = 9000;
 
-app.use(cors());
+// Allow requests from your frontend domain
+app.use(
+    cors({
+      origin: "https://beyondchat-bot-z5xj.vercel.app", // Change this to your frontend's actual deployed URL
+      methods: "GET,POST,PUT,DELETE",
+      allowedHeaders: "Content-Type,Authorization",
+    })
+  );
+  
+  app.use(cors());
 app.use(express.json());
 
 app.get('/api/fetchMeta', async (req, res) => {
