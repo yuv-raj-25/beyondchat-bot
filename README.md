@@ -5,6 +5,15 @@
 ## Overview
 BeyondChats is a chatbot company, and this project is a UI/UX implementation for setting up a new chatbot for businesses. The application allows users to register, set up their organization, train a chatbot, and integrate it into their website.
 
+## Auto-Fetching Meta Description Issue
+The application attempts to auto-fetch the meta description from a given website URL. This works in **localhost**, but in **production**, CORS restrictions prevent direct access to metadata. Here’s why:
+
+1. **Direct fetch from frontend** using `fetch` or `axios` fails due to browser security policies. Browsers block metadata access for cross-origin requests.
+2. **Possible Solutions:**
+   - Use a **CORS proxy** like `https://api.allorigins.win/get?url=` (limited reliability, might not work for all sites).
+   - A backend API (Express) can fetch the metadata, but it also needs to handle CORS properly.
+   - If running in production, the backend needs to set `Access-Control-Allow-Origin: *` for successful metadata retrieval.
+
 ## Tech Stack
 - **Frontend:** React + Vite, Tailwind CSS
 - **Backend:** Express.js
@@ -35,16 +44,7 @@ BeyondChats is a chatbot company, and this project is a UI/UX implementation for
   - Confetti/SUCCESS UI when chatbot integration is successful.
   - "Explore Admin Panel" and "Start Talking to Your Chatbot" buttons.
   - Social media sharing buttons.
-
-## Auto-Fetching Meta Description Issue
-The application attempts to auto-fetch the meta description from a given website URL. This works in **localhost**, but in **production**, CORS restrictions prevent direct access to metadata. Here’s why:
-
-1. **Direct fetch from frontend** using `fetch` or `axios` fails due to browser security policies. Browsers block metadata access for cross-origin requests.
-2. **Possible Solutions:**
-   - Use a **CORS proxy** like `https://api.allorigins.win/get?url=` (limited reliability, might not work for all sites).
-   - A backend API (Express) can fetch the metadata, but it also needs to handle CORS properly.
-   - If running in production, the backend needs to set `Access-Control-Allow-Origin: *` for successful metadata retrieval.
-
+  - 
 ## Setup & Installation
 ### Prerequisites
 - Node.js & npm/yarn installed
