@@ -3,12 +3,13 @@ import { motion } from 'framer-motion';
 import { Building2, Globe, FileText, Loader2 } from 'lucide-react';
 import { FormData } from '../type';
 import "tailwindcss";
+import axios from 'axios';
 
 // const apiUrl =  "https://beyondchat-bot.vercel.app"// Replace with your actual deployed backend URL
  // Use localhost for development
 
 
-//  const apiUrl = "http://localhost:4000"
+//  const apiUrl = "http://localhost:9000"
 interface Props {
   formData: FormData;
   setFormData: (data: FormData) => void;
@@ -17,40 +18,26 @@ interface Props {
 
 export function OrganizationStep({ formData, setFormData, onNext }: Props) {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+
 
   const fetchMetaDescription = useCallback(async (url: string) => {
-    if (!url) return;
-
+    if (!url || formData.companyDescription) return; // Prevent overwriting manual input
     setLoading(true);
-    setError(null);
-
     try {
-      const response = await fetch(url);
-      const text = await response.text();
-
-      // Parse the HTML
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(text, "text/html");
-
-      // Extract meta description
-      const description =
-        doc.querySelector('meta[name="description"]')?.getAttribute("content") ||
-        doc.querySelector('meta[property="og:description"]')?.getAttribute("content") ||
-        "No description found.";
-
-      setFormData({ ...formData, companyDescription: description });
+      const response = await axios.get(`http://localhost:9000/api/fetchMeta?url=${encodeURIComponent(url)}`);
+      const data = response.data;
+      if (data.description) {
+        setFormData({ ...formData, companyDescription: data.description });
+      }
     } catch (error) {
-      console.error("Failed to fetch meta description", error);
-      setError("Failed to fetch description (CORS blocked)");
+      console.error('Failed to fetch meta description', error);
     } finally {
       setLoading(false);
     }
-  }, [formData, setFormData]);
+  }, [setFormData, formData]);
+
   useEffect(() => {
-    if (formData.companyUrl) {
-      fetchMetaDescription(formData.companyUrl);
-    }
+    fetchMetaDescription(formData.companyUrl);
   }, [formData.companyUrl, fetchMetaDescription]);
 
   return (
@@ -93,8 +80,6 @@ export function OrganizationStep({ formData, setFormData, onNext }: Props) {
           />
           {loading && <Loader2 className="absolute right-3 top-3 animate-spin text-gray-400" />}
         </div>
-
-        {error && <p className="text-red-500 text-sm">{error}</p>}
 
         <button
           onClick={onNext}

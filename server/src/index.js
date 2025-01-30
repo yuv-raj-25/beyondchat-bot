@@ -1,16 +1,13 @@
 import express from 'express';
 import axios from 'axios';
-import { load } from 'cheerio';
+import {load} from 'cheerio';
 import cors from 'cors';
-import dotenv from 'dotenv';
-import { app } from "./app.js"; // Ensure this file properly exports `app`
 
-dotenv.config(); // Ensure .env file is loaded
+const app = express();
+const PORT = 9000;
 
-const port = 4000;
-
-// app.use(cors());
-// app.use(express.json());
+app.use(cors());
+app.use(express.json());
 
 app.get('/api/fetchMeta', async (req, res) => {
     const { url } = req.query;
@@ -20,9 +17,13 @@ app.get('/api/fetchMeta', async (req, res) => {
     }
 
     try {
+        // Fetch the HTML content of the webpage
         const { data } = await axios.get(url, { timeout: 10000 });
+
+        // Load the HTML into cheerio
         const $ = load(data);
 
+        // Extract meta description
         const description =
             $('meta[name="description"]').attr('content') ||
             $('meta[property="og:description"]').attr('content') ||
@@ -30,11 +31,11 @@ app.get('/api/fetchMeta', async (req, res) => {
 
         return res.status(200).json({ description });
     } catch (error) {
-        console.error('Error fetching metadata:', error.message);
+        console.error('Error fetching metadata:', error);
         return res.status(500).json({ error: 'Failed to fetch meta description' });
     }
 });
 
-app.listen(port, () => {
-    console.log(`🚀 Server running on http://localhost:${port}`);
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
 });
