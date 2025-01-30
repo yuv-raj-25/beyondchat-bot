@@ -9,7 +9,7 @@ import axios from 'axios';
  // Use localhost for development
 
 
-//  const apiUrl = "http://localhost:9000"
+ const apiUrl = "https://beyondchat-server.vercel.app/"
 interface Props {
   formData: FormData;
   setFormData: (data: FormData) => void;
@@ -24,7 +24,7 @@ export function OrganizationStep({ formData, setFormData, onNext }: Props) {
     if (!url || formData.companyDescription) return; // Prevent overwriting manual input
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:9000/api/fetchMeta?url=${encodeURIComponent(url)}`);
+      const response = await axios.get(`${apiUrl}/api/fetchMeta?url=${encodeURIComponent(url)}`);
       const data = response.data;
       if (data.description) {
         setFormData({ ...formData, companyDescription: data.description });
